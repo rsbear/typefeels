@@ -1,0 +1,67 @@
+@tailwind base;
+
+body {
+  background-color: #101010;
+  color: #F9FAFB;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; 
+}
+
+input {
+  background: darkgray;
+}
+
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply outline-none rounded-sm border border-solid border-cool-gray-300 border-opacity-0 capitalize font-semibold text-sm px-3 py-1;
+  }
+  .btn:active {
+    @apply outline-none border-solid border-blue-500;
+  }
+  .btn:focus {
+    @apply outline-none border-solid border-blue-500;
+  }
+  .btn:before {
+    @apply outline-none border-solid border-blue-500;
+  }
+  .btn:after {
+    @apply outline-none border-solid border-blue-500;
+  }
+  .btn-full {
+    @apply bg-blue-500;
+  }
+  .btn-full:active {
+    @apply outline-none border-solid border-blue-500;
+  }
+  .select-btn {
+    @apply outline-none rounded-sm px-3 py-1 border border-gray-500 capitalize font-semibold text-sm;
+  }
+  .select-btn:hover {
+    @apply border-blue-400 bg-blue-400;
+  }
+  .select-btn:active {
+    @apply border-t-0 border-l-0 border-r-0 border-b-0 outline-none border-transparent shadow-noshadow;
+  }
+  .select-btn:after {
+    @apply border-t-0 border-l-0 border-r-0 border-b-0 outline-none border-transparent shadow-noshadow;
+  }
+  .select-btn:before {
+    @apply border-t-0 border-l-0 border-r-0 border-b-0 outline-none border-transparent shadow-noshadow;
+  }
+  .select-btn:focus {
+    @apply border-t-0 border-l-0 border-r-0 border-b-0 outline-none border-transparent shadow-noshadow;
+  }
+  
+  .inpt {
+    @apply outline-none bg-opacity-0 rounded border border-gray-500;
+  }
+  .inpt:active {
+    @apply bg-opacity-0;
+  }
+  .inpt:focus {
+    @apply bg-opacity-0;
+  }
+}

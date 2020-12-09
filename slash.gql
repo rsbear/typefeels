@@ -1,0 +1,130 @@
+enum Role {
+  BASIC
+  ADMIN
+  LEGEND
+}
+
+enum Stage {
+  INTEREST_CHECK
+  INTEREST_CHECK_CLOSED
+  GROUP_BUY_SOON
+  GROUP_BUY
+  GROUP_BUY_CLOSED
+}
+
+type User {
+  id: String! @id @search(by: [hash])
+  avatar: String
+  color: String
+  email: String 
+  username: String 
+  role: Role
+
+  follow_ids: [String]
+  join_ids: [String]
+
+  projects_keyboards: [Keyboard]
+  projects_keysets: [Keyset]
+}
+
+type Keyboard {
+  id: ID!
+  angle: String
+  alias: String
+  brand: String
+  connection: String
+  firmware: String
+  mount: String
+  name: String 
+  pcb: String
+  size: String
+
+  extra_pcbs: Boolean
+  extra_plates: Boolean
+
+  layouts: [String]
+  layout_support: [String]
+
+  images_thumbs: [String]
+  images_posters: [String]
+  images_raws: [String]
+
+  editions: [Edition] 
+  plates: [Plate] 
+  cases: [Case] 
+  weights: [Weight] 
+  
+  colors: [Color] 
+  vendors: [Vendor] 
+
+  stage: Stage
+
+  creator: User 
+}
+
+type Edition {
+  id: ID!
+  name: String
+  price: String
+  keyboard: Keyboard @hasInverse(field: editions)
+}
+
+type Plate {
+  id: String! @id @search(by: [hash])
+  name: String
+  price: String
+  keyboard: Keyboard @hasInverse(field: plates)
+}
+
+type Case {
+  id: String! @id @search(by: [hash])
+  name: String
+  price: String
+  keyboard: Keyboard @hasInverse(field: cases)
+}
+
+type Weight {
+  id: String! @id @search(by: [hash])
+  name: String
+  price: String
+  keyboard: Keyboard @hasInverse(field: weights)
+}
+
+type Keyset {
+  id: String! @id @search(by: [hash])
+  manufacturer: String
+  name: String
+  profile: String
+
+  kits: [Kit]
+  keyset_colors: [Color] 
+
+  keyset_vendors: [Vendor]
+  creator: User
+}
+
+type Kit {
+  id: String! @id @search(by: [hash])
+  name: String
+  price: String
+  keyset: Keyset
+}
+
+type Color {
+  id: String! @id @search(by: [hash])
+  hex: String
+  name: String
+  pantone: String
+  ral: String
+  keyset: Keyset @hasInverse(field: keyset_colors)
+  keyboard: Keyboard @hasInverse(field: colors)
+}
+
+type Vendor {
+  id: String! @id @search(by: [hash])
+  url: String
+  name: String
+  keyboard: Keyboard @hasInverse(field: vendors)
+  keyset: Keyset @hasInverse(field: keyset_vendors)
+}
+
